@@ -1,7 +1,4 @@
 # Weather App Backend
-**weather-api**
-
-## Description
 A backend service that fetches and serves weather data from public APIs with an optimized caching mechanism to reduce redundant requests and improve performance.
 
 ---
