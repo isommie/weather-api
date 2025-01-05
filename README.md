@@ -95,12 +95,12 @@ weather-api/
 ├── .gitignore                      # Files and folders to ignore in Git.
 ├── docker-compose.yml              # Docker Compose configuration file.
 ├── Dockerfile                      # Docker configuration.
+├── index.js                        # Entry point of your application.
 ├── package.json                    # Project dependencies and scripts.
 ├── package-lock.json               # npm package lock file.
 ├── README.md                       # Project documentation.
 │
 ├── src/                            # Source code directory.
-│   ├── index.js                    # Entry point of your application.
 │   ├── app.js                      # Initializes Express app.
 │   ├── config/                     # Configuration files.
 │   │   └── redisConfig.js          # Redis configuration setup.
