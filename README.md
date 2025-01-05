@@ -90,26 +90,41 @@ A backend service that fetches and serves weather data from public APIs with an 
 ## Project File Structure
 ```
 weather-api/
-├── src/
-│   ├── controllers/
-│   │   └── weatherController.js    # Handles weather-related logic.
-│   ├── routes/
-│   │   └── weatherRoutes.js        # Defines API routes.
-│   ├── services/
-│   │   └── weatherService.js       # Handles API calls to weather providers.
-│   ├── utils/
-│   │   ├── cache.js                # Redis cache utility.
-│   │   └── scheduler.js            # Manages periodic cache updates.
-│   ├── config/
-│   │   └── redisConfig.js          # Redis configuration setup.
-│   └── app.js                      # Initializes Express app.
-├── tests/
-│   └── weather.test.js             # Unit tests for weather endpoints.
-├── Dockerfile                      # Docker configuration.
+├── .dockerignore                   # Ignore file for Docker.
 ├── .env                            # Environment variables.
 ├── .gitignore                      # Files and folders to ignore in Git.
+├── docker-compose.yml              # Docker Compose configuration file.
+├── Dockerfile                      # Docker configuration.
 ├── package.json                    # Project dependencies and scripts.
-└── README.md                       # Project documentation.
+├── package-lock.json               # npm package lock file.
+├── README.md                       # Project documentation.
+│
+├── src/                            # Source code directory.
+│   ├── index.js                    # Entry point of your application.
+│   ├── app.js                      # Initializes Express app.
+│   ├── config/                     # Configuration files.
+│   │   └── redisConfig.js          # Redis configuration setup.
+│   ├── controllers/                # Controllers for handling logic.
+│   │   ├── weatherController.js    # Handles weather-related logic.
+│   │   └── authController.js       # Logic for handling user authentication.
+│   ├── routes/                     # API route definitions.
+│   │   ├── weatherRoutes.js        # Defines API routes for weather endpoints.
+│   │   └── authRoutes.js           # Defines routes for authentication.
+│   ├── services/                   # Services for external API calls and business logic.
+│   │   ├── weatherService.js       # Handles API calls to weather providers.
+│   │   └── authService.js          # Logic for user authentication and management.
+│   ├── models/                     # Database models.
+│   │   ├── User.js                 # User model.
+│   │   └── Weather.js              # Weather data model.
+│   ├── utils/                      # Utility functions and modules.
+│   │   ├── cache.js                # Redis cache utility.
+│   │   ├── logger.js               # Logging utility.
+│   │   ├── errorHandler.js         # Error handling utility.
+│   │   └── scheduler.js            # Manages periodic cache updates.
+│
+└── tests/                          # Test files for your application.
+    ├── weather.test.js             # Unit tests for weather endpoints.
+    └── auth.test.js                # Unit tests for authentication functionality.
 ```
 
 ---
