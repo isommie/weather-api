@@ -103,7 +103,8 @@ weather-api/
 ├── src/                            # Source code directory.
 │   ├── app.js                      # Initializes Express app.
 │   ├── config/                     # Configuration files.
-│   │   └── redisConfig.js          # Redis configuration setup.
+│   │   ├── redisConfig.js          # Redis configuration setup.
+│   │   └── dbConfig.js             # MongoDB configuration setup.
 │   ├── controllers/                # Controllers for handling logic.
 │   │   ├── weatherController.js    # Handles weather-related logic.
 │   │   └── authController.js       # Logic for handling user authentication.

@@ -1,13 +1,13 @@
 {
   "name": "weather-api",
   "version": "1.0.0",
-  "main": "src/app.js",
+  "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "mocha tests/**/*.test.js"
   },
   "keywords": [],
