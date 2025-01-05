@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Make sure your Dockerfile is in the root directory
+    ports:
+      - "3000:3000"           # Expose the backend port
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - mongodb
+
+  redis:
+    image: redis:alpine  # Use the official Redis image
+    ports:
+      - "6379:6379"       # Expose Redis port
+
+  mongodb:
+    image: mongo:latest   # Use the official MongoDB image
+    ports:
+      - "27017:27017"      # Expose MongoDB port
+    env_file:
+      - .env
