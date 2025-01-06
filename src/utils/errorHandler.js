@@ -1,8 +1,15 @@
-module.exports = (err, req, res, next) => {
-    console.error(err.message);
-    res.status(err.status || 500).json({
-      success: false,
-      message: err.message || 'Internal Server Error',
-    });
-  };
-  
+const logger = require('./logger');
+
+const errorHandler = (err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
+
+  logger.error(`Error: ${message} | Status Code: ${statusCode}`);
+
+  res.status(statusCode).json({
+    success: false,
+    message,
+  });
+};
+
+module.exports = { errorHandler };

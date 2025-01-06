@@ -1,41 +1,42 @@
-const express = require('express');
-const cors = require('cors');
-const logger = require('./src/utils/logger');
-const errorHandler = require('./src/utils/errorHandler');
-const { scheduleCacheUpdate } = require('./src/utils/scheduler');
-const weatherRoutes = require('./src/routes/weatherRoutes');
-const connectToDatabase = require('./src/config/dbConfig');
+const http = require('http');
+const dotenv = require('dotenv');
 const redisClient = require('./src/config/redisConfig');
+const dbConnect = require('./src/config/dbConfig');
+const logger = require('./src/utils/logger');
+const app = require('./src/app');
 
-const app = express();
+// Load environment variables
+dotenv.config();
 
-// Middleware
-app.use(express.json());
-app.use(cors());
+// Constants
+const PORT = process.env.PORT || 3000;
 
-// Routes
-app.use('/api/weather', weatherRoutes);
+// Initialize Redis
+redisClient.on('connect', () => logger.info('Connected to Redis.'));
+redisClient.on('error', (err) => logger.error(`Redis connection error: ${err.message}`));
 
-// Error Handling Middleware
-app.use(errorHandler);
-
-// MongoDB Connection
-connectToDatabase();
-
-// Example Redis Usage (for debugging/testing purposes)
-redisClient.set('startup_check', 'Redis is working!', 'EX', 60, (err, reply) => {
-  if (err) {
-    logger.error('Error setting Redis key:', err);
-  } else {
-    logger.info('Redis startup check reply:', reply);
+// Initialize MongoDB
+(async () => {
+  try {
+    await dbConnect();
+    logger.info('Connected to MongoDB.');
+  } catch (error) {
+    logger.error(`Failed to connect to MongoDB: ${error.message}`);
+    process.exit(1); // Exit if database connection fails
   }
+})();
+
+// Create HTTP Server
+const server = http.createServer(app);
+
+// Start Server
+server.listen(PORT, () => {
+  logger.info(`Server running on port ${PORT}`);
 });
 
-// Schedule periodic cache updates
-scheduleCacheUpdate();
-
-// Start the Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  logger.info(`Server running on http://localhost:${PORT}`);
+// Graceful Shutdown
+process.on('SIGINT', async () => {
+  logger.info('Shutting down server...');
+  redisClient.quit();
+  process.exit(0);
 });
