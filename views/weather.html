@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css">
+  <title>Weather Report</title>
+</head>
+<body>
+      <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/views/index.html">
+          <h1>Weather App</h1>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/views/index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Weather Report</h1>
+    <div id="map"></div>
+    <div id="weatherInfo">
+      <h2>Selected Location Weather</h2>
+      <p id="weatherData">Click on a location on the map to get the weather.</p>
+    </div>
+  </div>
+  <script src="../public/js/weather.js"></script>
+</body>
+</html>

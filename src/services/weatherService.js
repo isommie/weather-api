@@ -10,7 +10,7 @@ const fetchWeatherFromAPI = async (location) => {
   const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
   try {
-    const response = await axios.get(`${baseUrl}`, {
+    const response = await axios.get(baseUrl, {
       params: { q: location, appid: apiKey, units: 'metric' },
     });
 
@@ -25,14 +25,14 @@ const getWeather = async (location) => {
   const cacheKey = `weather:${location.toLowerCase()}`;
 
   try {
-    // Check Redis Cache
+    // Check Redis Cache first
     const cachedData = await redisClient.get(cacheKey);
     if (cachedData) {
       logger.info(`Cache hit for location: ${location}`);
       return JSON.parse(cachedData);
     }
 
-    // Check MongoDB (optional)
+    // Check MongoDB as a fallback
     const dbData = await Weather.findOne({ location }).exec();
     if (dbData) {
       logger.info(`Database hit for location: ${location}`);
@@ -40,20 +40,20 @@ const getWeather = async (location) => {
       return dbData.data;
     }
 
-    // Fetch from API
+    // Fetch from the API if not found in cache or DB
     const apiData = await fetchWeatherFromAPI(location);
 
-    // Save to MongoDB
+    // Save fetched data to MongoDB for future use
     const weatherEntry = new Weather({ location, data: apiData });
     await weatherEntry.save();
 
-    // Save to Redis
+    // Cache the API response in Redis for subsequent requests
     redisClient.set(cacheKey, JSON.stringify(apiData), 'EX', WEATHER_CACHE_TTL);
 
     return apiData;
   } catch (error) {
     logger.error(`Error in getWeather service: ${error.message}`);
-    throw error;
+    throw error; // Rethrow to be handled by controller
   }
 };
 

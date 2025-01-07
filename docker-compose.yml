@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: weather_app
     ports:
-      - "${PORT}:${PORT}"
+      - "3000:${PORT}"
     env_file:
       - .env
     depends_on:

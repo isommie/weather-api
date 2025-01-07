@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <title>Signin</title>
+</head>
+<body>
+      <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/views/index.html">
+          <h1>Weather App</h1>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/views/signup.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Signin</h1>
+    <form id="signinForm" method="POST">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Signin</button>
+    </form>
+    <p>Don't have an account? <a href="/views/signup.html">Sign up</a></p>
+  </div>
+
+  <script src="../public/js/signin.js"></script> <!-- Add this line to include the signin.js script -->
+</body>
+</html>

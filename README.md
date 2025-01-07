@@ -7,6 +7,22 @@ A backend service that fetches and serves weather data from public APIs with an 
 - Fetch real-time weather data from public APIs.
 - Implement caching to optimize repeated requests.
 - Serve data via a RESTful API.
+- Minimalistic frontend to showcase backend integration
+
+---
+
+## Screenshots
+![Screenshot 1](landing-page.png.png)
+This is a screenshot of the weather app's landing page.
+
+![Screenshot 1](signin-page.png.png)
+This is a screenshot of the weather app's landing page.
+
+![Screenshot 2](signup-page.png.png)
+This is a screenshot of the weather app's signin page.
+
+![Screenshot 3](weather-page.png.png)
+This is a screenshot of the weather app's weather data page.
 
 ---
 
