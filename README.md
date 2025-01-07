@@ -7,21 +7,21 @@ A backend service that fetches and serves weather data from public APIs with an 
 - Fetch real-time weather data from public APIs.
 - Implement caching to optimize repeated requests.
 - Serve data via a RESTful API.
-- Minimalistic frontend to showcase backend integration
+- Minimalistic frontend to showcase backend integration.
 
 ---
 
 ## Screenshots
-![Screenshot 1](landing-page.png.png)
+![Screenshot 1](landing-page.png)
 This is a screenshot of the weather app's landing page.
 
-![Screenshot 1](signin-page.png.png)
+![Screenshot 1](signin-page.png)
 This is a screenshot of the weather app's landing page.
 
-![Screenshot 2](signup-page.png.png)
+![Screenshot 2](signup-page.png)
 This is a screenshot of the weather app's signin page.
 
-![Screenshot 3](weather-page.png.png)
+![Screenshot 3](weather-page.png)
 This is a screenshot of the weather app's weather data page.
 
 ---
@@ -95,10 +95,22 @@ This is a screenshot of the weather app's weather data page.
    - Create a `.env` file in the root directory.
    - Add your API keys and configurations:
      ```env
-     PORT=3000
-     REDIS_HOST=127.0.0.1
-     REDIS_PORT=6379
-     WEATHER_API_KEY=your_api_key_here
+      # Application
+      NODE_ENV=production
+      PORT=4000
+
+      # Redis
+      REDIS_HOST=redis
+      REDIS_PORT=6379
+
+      # MongoDB
+      MONGO_URI=YOUR-MONGO-URI
+
+      # Weather API Key
+      WEATHER_API_KEY=YOUR-WEATHER-API-KEY
+
+      #jwt secret
+      JWT_SECRET=YOUR-JWT-SECRET
      ```
 
 ---
